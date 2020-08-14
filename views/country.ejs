@@ -1,0 +1,157 @@
+<%- include("partials/header") %> 
+
+
+<div class="countryInfo">
+    <div class="countryData">
+        <h1><%= country.data.name %> </h1>
+    </div>
+    <div class="countryData">
+        <h5>Country Code</h5>
+        <h3><%= country.data.code %> </h3>
+    </div>
+    <div class="countryData">
+        <h5>Population</h5>
+        <h3><%= country.data.population %> </h3>
+    </div>
+    <hr>
+    <div class="countryData" id="confirmed">
+        <h5>Confirmed</h5>
+        <h3><%= latestConfirmed %> </h3>
+    </div>
+    <div class="countryData" id="recovered">
+        <h5>Recovered</h5>
+        <h3><%= latestRecovered %> </h3>
+    </div>
+    <div class="countryData" id="deaths">
+        <h5>Deaths</h5>
+        <h3><%= latestDeaths %> </h3>
+    </div>
+    <hr>
+</div>
+
+
+<div class="row">
+    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+        <div id="containerCountryNewConfirmed" style="width:100%; height:400px;">
+            <script>
+                Highcharts.chart('containerCountryNewConfirmed', {
+                    chart: {
+                            type: 'line'
+                        },
+                        title: {
+                            text: 'Coronavirus Daily Cases'
+                        },
+                        xAxis: {
+                            categories: <%- JSON.stringify(dateList.reverse().slice(0,-1)) %>
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Numbers'
+                            }
+                        },
+                        plotOptions: {
+                            series: {
+                                color: '#fa7d09'
+                            }
+                        },
+                        series: [{
+                            name: 'Cases',
+                            data: <%- JSON.stringify(timeLineNewConfirmed.reverse().slice(0,-1)) %>
+                        }],
+                        credits: {
+                            enabled: false
+                        }
+                });
+            </script>
+        </div>
+    </div>
+    <div class="col col-lg-6 col-md-12 col-12">
+        <div id="container3dPie" style="width:100%; height:400px;">
+            <script>
+                    Highcharts.chart('container3dPie', {
+                    chart: {
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45,
+                            beta: 0
+                        }
+                    },
+                    title: {
+                        text: 'Case Status'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            depth: 35,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}'
+                            }
+                        }
+                    },
+                    series: [{
+                        colors: ['#dd2c00', '#52de97', '#f69e7b'],
+                        type: 'pie',
+                        name: 'Case Status',
+                        data: [
+                            ['Deaths', <%- JSON.stringify(latestDeaths) %>],
+                            ['Recovered', <%- JSON.stringify(latestRecovered) %>],
+                            ['Critical', <%- JSON.stringify(latestCritical) %>]
+                        ]
+                    }],
+                    credits: {
+                            enabled: false
+                        }
+                });
+                        
+            </script>
+        </div>
+    </div>
+    <div class="col col-lg-6 col-md-12 col-12">
+        <div id="containerCountryConfirmed" style="width:100%; height:400px;">
+            <script>
+                Highcharts.chart('containerCountryConfirmed', {
+                    chart: {
+                            type: 'line'
+                        },
+                        title: {
+                            text: 'Total Cases'
+                        },
+                        xAxis: {
+                            categories: <%- JSON.stringify(dateList.slice(0,-1)) %>
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Numbers'
+                            }
+                        },
+                        plotOptions: {
+                            series: {
+                                color: '#00bcd4'
+                            }
+                        },
+                        series: [{
+                            name: 'Cases',
+                            data: <%- JSON.stringify(timeLineConfirmed.reverse().slice(0,-1)) %>
+                        }],
+                        credits: {
+                            enabled: false
+                        }
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+
+<%- include("partials/footer") %> 

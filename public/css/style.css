@@ -1,0 +1,77 @@
+.navbar{
+    height: 80px;
+    background-color: rgb(36, 36, 36);
+}
+
+.countriesList{
+    margin-top: 150px;
+    margin-bottom: 100px;
+}
+
+.row{
+    margin-bottom: 100px;
+}
+
+.countryInfo{
+    margin-top: 150px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.countryData{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#containerCountryNewConfirmed{
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+#info{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+#form{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+    width: 600px;
+}
+
+#containerLine{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#containerPie{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#recovered{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+#recovered h4{
+    color: rgb(60, 190, 60);
+}
+#confirmed h4{
+    color: rgb(59, 154, 192);
+}
+#deaths h4{
+    color: rgb(255, 0, 0);
+}
+
+#recovered h5{
+    color: rgb(60, 190, 60);
+}
+#confirmed h5{
+    color: rgb(59, 154, 192);
+}
+#deaths h5{
+    color: rgb(255, 0, 0);
+}

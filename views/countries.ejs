@@ -1,0 +1,13 @@
+<%- include("partials/header") %> 
+<div class="countriesList"></div>
+
+<h2>Countries - Country Codes</h2>
+
+<br><br>
+
+<% countriesList.sort().forEach(function(country){ %> 
+    <p><a href="/country?code=<%= country[1].toLowerCase() %> "><%= country[0] %> - <%= country[1] %></a> </p>
+<% }) %> 
+
+</div>
+<%- include("partials/footer") %> 

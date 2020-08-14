@@ -1,0 +1,128 @@
+<%- include("partials/header") %>
+
+<h1>World Timeline</h1>
+<div class="row">
+
+    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="container" id="form">
+            <form action="/country" method="GET">
+                <h3>Search Country</h3>
+                <div class="input-group input-group-lg">
+                    <input type="text" name="code" class="form-control rounded-pill" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Country Code">
+                    <button class="btn btn-primary btn-lg btn-block rounded-pill">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="container" id="info">
+            <div id="confirmed">
+                <h4>Confirmed Cases</h4>
+                <h2><%= confirmed %> </h2>
+            </div>
+            <div id="recovered">
+                <h4>Recovered</h4>
+                <h2><%= recovered %> </h2>    
+            </div>
+            <div id="deaths">
+                <h4>Deaths</h4> 
+                <h2><%= deaths %> </h2> 
+            </div>
+        </div>
+    </div> 
+
+    <hr>
+    
+    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+        <div id="containerLine" style="width:100%; height:600px;">
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var myChart = Highcharts.chart('containerLine', {
+                        chart: {
+                            type: 'line'
+                        },
+                        title: {
+                            text: 'Coronavirus Daily Cases'
+                        },
+                        xAxis: {
+                            categories: <%- JSON.stringify(dateList.reverse().slice(0,-1)) %>
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Numbers'
+                            }
+                        },
+                        series: [{
+                            name: 'Cases',
+                            data: <%- JSON.stringify(newCasesList.reverse().slice(0,-1)) %>
+                        }],
+                        credits: {
+                            enabled: false
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+        <div id="containerPie" style="width:100%; height:600px;">
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var myChart = Highcharts.chart('containerPie', {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Recovery/Deaths Ratio'
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        accessibility: {
+                            point: {
+                                valueSuffix: '%'
+                            }
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true
+                                },
+                                showInLegend: true,
+                                size: 400
+                            }
+                        },
+                        series: [{
+                            name: 'Brands',
+                            colorByPoint: true,
+                            data: [{
+                                    name: 'Recovered',
+                                    y: <%- JSON.stringify(recovered) %>,
+                                }, {
+                                    name: 'Deaths',
+                                    y: <%- JSON.stringify(deaths) %>
+                                }]
+                        }],
+                        credits: {
+                            enabled: false
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>
