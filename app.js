@@ -105,7 +105,7 @@ app.get("/countries", function (req,res) {
 });
 
 
-
-app.listen(8000, function () {
-    console.log("CORONAAPI SERVER");
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+  console.log("Server Has Started!");
 });
